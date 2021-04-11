@@ -9,17 +9,19 @@ export interface IGameField {
 
 export class GameField implements IGameField {
   private field: Cell[][];
-  constructor(width?: number, heigth: number = 1) {
-    let result = [];
 
-    for (let i = 0; i < heigth; i++) {
+  constructor(width?: number, heigth = 1) {
+    const result = [];
+
+    for (let i = 0; i < heigth; i += 1) {
       result.push([]);
-      for (let z = 0; z < width; z++) {
+      for (let z = 0; z < width; z += 1) {
         result[i].push(0);
       }
     }
     this.field = result;
   }
+
   public getState(): Cell[][] {
     return this.field;
   }
@@ -51,10 +53,10 @@ export class GameField implements IGameField {
 
   private getNumberOfAliveNeighbours(x: number, y: number): number {
     let ret = 0;
-    for (let i = y - 1; i <= y + 1; i++) {
-      for (let j = x - 1; j <= x + 1; j++) {
+    for (let i = y - 1; i <= y + 1; i += 1) {
+      for (let j = x - 1; j <= x + 1; j += 1) {
         if (i === y && j === x) {
-          continue;
+          ret += 0;
         }
         if (this.field[i] && this.field[i][j]) {
           ret += 1;
@@ -63,12 +65,13 @@ export class GameField implements IGameField {
     }
     return ret;
   }
-  public setSize(width: number, height: number) {
-    let newField = [];
 
-    for (let i = 0; i < height; i++) {
+  public setSize(width: number, height: number) {
+    const newField = [];
+
+    for (let i = 0; i < height; i += 1) {
       newField.push([]);
-      for (let j = 0; j < width; j++) {
+      for (let j = 0; j < width; j += 1) {
         newField[i].push(
           this.field[i] && this.field[i][j] ? this.field[i][j] : 0
         );
