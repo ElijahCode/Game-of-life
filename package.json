@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "test": "jest",
-    "lint": "eslint",
+    "lint": "prettier --check . && npx eslint . --ext .js,.ts && npx tsc --noEmit src/ts/**/**/*.ts",
+    "lint:fix": "prettier --write . && eslint . --ext .js,.ts --fix",
     "build": "webpack",
     "dev:serv": "webpack serve"
   },
